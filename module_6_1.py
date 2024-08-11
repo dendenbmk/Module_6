@@ -1,51 +1,53 @@
-class Animal:
+class Animal:                                 # Создали Родительский в будующем класс Animal
 
-    alive = True
-    fed = False
+    alive = True # Создали атрибут для класса (и дочерних классов) alive и указали, что True - 'живой' при создании
+    fed = False  # Создали атрибут для класса(и дочених классов) fed -
+                                           # и указали что по умолчанию будет False - 'голодный' - не наормленный
+    def __init__(self, name): # в методе инит ...
+        self.name = name      # указали что имя при создании = имени введеному нами
 
-    def __init__(self, name):
-        self.name = name
+    def eat(self, food):                             # в методе еда сказали что будем передовать 1 параметр food
+        if isinstance(food, Fruit):                  # если переданный параметр будет из класса Fruit, то ...
+            print(f'{self.name} съел {food.name}')   # печатаем строку тот то (self.name) съел тото - парамерт food.name
+            self.fed = True                          # И в этом случаи атрибут fed для self меняем на True - накормлен
+        else:                                        # Иначе
+            self.alive = False                       #  в этом случаи атрибут fed для self меняем на False - голодный
+            print(f'{self.name} не стал есть {food.name}')  # выводим строку, тот то (self.name) не стал есть то то
 
-    def eat(self, food):
-        if isinstance(food, Fruit):
-            print(f'{self.name} съел {food.name}')
-            self.fed = True
-        else:
-            self.alive = False
-            print(f'{self.name} не стал есть {food.name}')
+class Plant:                                             # Создали класс Плант
+    edible = False                     # Создали для этого класса атрибут edible и сказали что он не съедобный = False
 
-class Plant:
-    edible = False
+    def __init__(self, name):          # в методе инит указали,
+        self.name = name               # что при создании имя будет введеным нами именем
 
-    def __init__(self, name):
-        self.name = name
-
-class Mammal(Animal):
+class Mammal(Animal):                              # Создали класс Mammal родительским для него стал класс (Animal)
+    pass                                          # Поставили "заглушку" что бы не было ошибки при запуске
+class Predator(Animal):                         # Создали класс Predator родительским для него стал класс (Animal)
     pass
 
-class Predator(Animal):
+class Flower(Plant):                             # Создали класс Flower родительским для него стал класс (Plant)
     pass
 
-class Flower(Plant):
-    pass
-
-class Fruit(Plant):
-    edible = True
+class Fruit(Plant):                              # Создали класс Fruit родительским для него стал класс (Plant)
+    edible = True                     # Создали для этого класса атрибут edible и сказали что он съедобный = True
 
 
-a1 = Predator('Волк с Уолл-Стрит')
-a2 = Mammal('Хатико')
-p1 = Flower('Цветик семицветик')
-p2 = Fruit('Заводной апельсин')
+a1 = Predator('Волк с Уолл-Стрит') # Создали хищника класса Predator с именем ('Волк с Уолл-Стрит') род. класс (Animal)
+a2 = Mammal('Хатико')              # создали млекопитающие класса Mammal с именем ('Хатико')  -  род. класс (Animal)
+p1 = Flower('Цветик семицветик')   # Создали цветок класса Flower с именем ('Цветик семицветик') и род. классом (Plant)
+p2 = Fruit('Заводной апельсин')    # Создали фрукт  класса Fruit с именем ('Цветик семицветик') и род. классом (Plant)
 
-print(a1.name)
-print(p1.name)
+print(a1.name)                     # выводим на печать хищника а1. с именем .name ('Волк с Уолл-Стрит')
+print(p1.name)                     # выводим на печать цветок р1. с именем .name ('Цветик семицветик')
 
-print(a1.alive)
-print(a2.fed)
-a1.eat(p1)
-a2.eat(p2)
-print(a1.alive)
-print(a2.fed)
+print(a1.alive)                 #  выводим на печать атрибут .alive для хищника а1. (проверяя) живой True или нет False
+print(a2.fed) # выводим на печать  атрибут .fed для млекопитающего а2.  (проверяя) накормленный  True или голодный False
+a1.eat(p1)                       # для хищника а1. запускаем метод .eat с параметром (p1)
+a2.eat(p2)                       # для млекопитающего а2. запускаем метод .eat с параметром (p1)
+print(a1.alive)               # выводим на печать атрибут .alive для хищника а1. (проверяя) живой True или нет False
+print(a2.fed) # выводим на печать  атрибут .fed для млекопитающего а2.  (проверяя) накормленный  True или голодный False
+
+
+
 
 
