@@ -10,21 +10,22 @@ class Vehicle:                                     # Создали в буду�
     __COLOR_VARIANTS = ['blue', 'red', 'green', 'black', 'white'] # Список возможных покрасок с "__"
 
     def get_model(self):                        # объявили Метод - получить модель
-        return f'Модель: {self.__model}'     #  Возвращает Ф строку с моделью СЭЛФ.Модель
+        return f'Модель: {self.__model}'     #  Возвращает f строку с моделью self.__model подставляем объект и... в данном слуцчаи модель
 
     def get_horsepower(self):
-        return f'Мощность двигателя: {self.__engen_power}'
+        return f'Мощность двигателя: {self.__engen_power}' #  Возвращает f строку с моделью self.__...
 
     def get_color(self):
-        return f'Цвет: {self.__color}'
+        return f'Цвет: {self.__color}'    #  Возвращает f строку с моделью self.__...
 
     def print_info(self):
         print(f' {self.get_model()} \n {self.get_horsepower()} \n {self.get_color()} \n Владелец, {self.owner}')
 
     def set_color(self, new_color):
-        if new_color.lower() in self._Vehicle__COLOR_VARIANTS:
-            self.__color = new_color
-        else:
+        if isinstance(new_color, str) and new_color.lower() in self.__COLOR_VARIANTS:       #  проверяем (изинстанс) что new_color ==str
+                                                                                # , и присутствувет в обозначеных ранее цветах 
+            self.__color = new_color                                # ... и если Да, меняем цвет
+        else:                                                    # если нет - выводим - Нельзя сменить цвет .....
             print(f"Нельзя сменить цвет на {new_color}")
 
 
@@ -36,10 +37,10 @@ class Sedan(Vehicle):
 
 
 # Текущие цвета __COLOR_VARIANTS = ['blue', 'red', 'green', 'black', 'white']
-vehicle1 = Sedan('Fedos', 'Toyota Mark II', 'blue', 500)
+vehicle1 = Sedan('Fedos', 'Toyota Mark II', 'blue', 500)               # Создаем объект
 
 # Изначальные свойства
-vehicle1.print_info()
+vehicle1.print_info()       
 
 # Меняем свойства (в т.ч. вызывая методы)
 vehicle1.set_color('Pink')
