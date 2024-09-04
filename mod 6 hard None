@@ -1,0 +1,26 @@
+class Figure:
+    sides_count=0
+    def __init__(self, color, sides):
+        self.__color = color
+        self.__sides = sides
+        self.filled = False
+        self.sides_count = sides
+
+    def get_color(self):
+        return self.__color    # РАБОТАЕТ
+
+    def __is_valid_color(self, *sides):   # РАБОТАЕТ
+        # print(sides, 'sides 1')
+        return len(sides) == len(self.sides_count) and all(isinstance(side, int) and 255 >= side >= 0 for side in sides) #, print(sides, 'sides 2')
+
+    def set_color(self, r, g, b):
+        if self.__is_valid_color(r, g, b):
+            self.__color = (r, g, b)                 # РАБОТАЕТ
+            print(self.get_color(), 'if')
+        else:
+            self.__color = self.__color             # РАБОТАЕТ
+            print(self.get_color(), 'else')
+
+fig = Figure((100, 200, 225), (2, 3, 4))
+print(fig.sides_count)
+print(fig.set_color(55, 55, 77))
