@@ -1,0 +1,56 @@
+class Figure:
+    sides_count=0
+    def __init__(self, color, sides):
+        self.__color = color
+        self.__sides = sides
+        self.filled = False
+        self.sides_count = sides
+
+    def get_color(self):
+        return self.__color    # РАБОТАЕТ
+
+    def __is_valid_color(self, *sides):   # РАБОТАЕТ
+        # print(sides, 'sides 1')
+        return len(sides) == len(self.sides_count) and all(isinstance(side, int) and 255 >= side >= 0 for side in sides) #, print(sides, 'sides 2')
+
+    def set_color(self, r, g, b):
+        if self.__is_valid_color(r, g, b):
+            self.__color = (r, g, b)                 # РАБОТАЕТ
+            print(self.get_color(), 'if')
+        else:
+            self.__color = self.__color             # РАБОТАЕТ
+            # print(self.get_color(), 'else')
+
+
+
+
+
+
+    def __is_valid_sides(self, *sides):                                             # РАБОТАЕТ
+        # print(self.__is_valid_sides(sides), sides, 'It is from __is_valid_sides')
+        return len(sides) == len(self.sides_count) and all(isinstance(side, int) and side > 0 for side in sides)
+
+
+        # else:
+        #     print(f'переданных значений  сторон {len(list(sides))} что не равно {self.sides_count}')
+        #     return False
+
+    def get_sides(self):                                # РАБОТАЕТ
+        return self.__sides
+
+    def __len__(self):                                        # РАБОТАЕТ
+        return sum(self.sides_count)
+
+    def set_sides(self, *new_sides):
+        # print(new_sides, 'new_sides START')
+        if len(new_sides) != len(self.sides_count):                  # РАБОТАЕТ
+            self.sides_count = self.sides_count               #  Что нужно менять  self.sides_count или self.__sides ???
+        else:
+            # print(self.sides_count, 'self.sides_count BEFOR')
+            self.sides_count = new_sides                      #  Что нужно менять  self.sides_count или self.__sides ???
+            # print(self.sides_count, 'self.sides_count AFTER')
+            # print(new_sides, 'new sides')         #
+
+
+Метод set_sides(self, *new_sides) должен принимать новые стороны, если их количество не равно sides_count, то не изменять, в противном случае - менять.
+
